@@ -13,15 +13,15 @@ class CheckoutSolution:
 
         discounts = {
         'A': (3, 130),
-        'B': (2, 45),}
+        'B': (2, 45)
+        }
+        total = 0
 
         for sku in skus:
             if sku not in prices:
                 return -1
 
         counts = Counter(skus)
-
-        total = 0
 
         count_a = counts.get('A', 0)
         if count_a > 0:
@@ -30,7 +30,7 @@ class CheckoutSolution:
 
         count_b = counts.get('B', 0)
         if count_b > 0:
-            offer_qty, offer_price = discounts['A']
+            offer_qty, offer_price = discounts['B']
             total += (count_b // offer_qty) * offer_price + (count_b % offer_qty) * prices['B']
 
         count_c = counts.get('C', 0)
@@ -42,6 +42,7 @@ class CheckoutSolution:
             total += count_d * prices['D']
 
         return total
+
 
 
 
