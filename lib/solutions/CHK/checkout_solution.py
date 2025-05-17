@@ -42,7 +42,3 @@ class CheckoutSolution:
             total += count_d * prices['D']
 
         return total
-
-
-
-
