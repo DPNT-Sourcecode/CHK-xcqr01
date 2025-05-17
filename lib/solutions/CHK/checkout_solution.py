@@ -7,7 +7,7 @@ class CheckoutSolution:
         prices = {
         'A': 50, 'B': 30, 'C': 20, 'D': 15,
         'E': 40, 'F': 10, 'G': 20, 'H': 10,
-        'I': 35, 'J': 60, 'K': 70, 'L': 90,
+        'I': 35, 'J': 60, 'K': 80, 'L': 90,
         'M': 15, 'N': 40, 'O': 10, 'P': 50,
         'Q': 30, 'R': 50, 'S': 30, 'T': 20,
         'U': 40, 'V': 50, 'W': 20, 'X': 90,
@@ -37,7 +37,7 @@ class CheckoutSolution:
         counts['B'] = max(0, counts.get('B', 0) - free_bs)
 
         # handle discounts for N -> 3N get one M free
-        free_ms = count.get('N', 0) // 3
+        free_ms = counts.get('N', 0) // 3
         counts['M'] = max(0, counts.get('M', 0) - free_ms)
 
         # handle discounts for R -> 3Rs get one Q free
@@ -56,7 +56,7 @@ class CheckoutSolution:
         count_u_to_pay = count_u - free_us
         counts['U'] = count_u_to_pay
 
-        for sku, prices in prices.items():
+        for sku, price in prices.items():
             count = counts.get(sku, 0)
 
             if sku in discounts:
@@ -65,32 +65,11 @@ class CheckoutSolution:
                         num_offers = count // offer_qty
                         total += num_offers * offer_price
                         count %= offer_qty
-                total += count * prices
-
-
-#         count_a = counts.get('A', 0)
-#         for offer_qty, offer_price in sorted(discounts['A'], key=lambda x: x[0], reverse=True):
-#             total += (count_a // offer_qty) * offer_price
-#             count_a %= offer_qty
-#         total += count_a * prices['A']
-#
-#         count_b = counts.get('B', 0)
-#         for offer_qty, offer_price in discounts['B']:
-#             total += (count_b // offer_qty) * offer_price
-#             count_b %= offer_qty
-#         total += count_b * prices['B']
-#
-#         count_c = counts.get('C', 0)
-#         total += count_c * prices['C']
-#
-#         count_d = counts.get('D', 0)
-#         total += count_d * prices['D']
-#
-#         count_e = counts.get('E', 0)
-#         total += count_e * prices['E']
-
-
+                total += count * price
+            else:
+                total += count * price
 
         return total
+
 
 
