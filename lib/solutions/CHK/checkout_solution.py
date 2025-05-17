@@ -60,11 +60,15 @@ class CheckoutSolution:
         count_u_to_pay = count_u - free_us
         counts['U'] = count_u_to_pay
 
-
         # handle discounts for grouped items S, T, X, Y, Z
         grouped_items = []
         for sku in grouped_discount_skus:
-            count =
+            group_items += [sku] * counts[sku)
+
+        group_items.sort(key=lambda sku: prices[sku], reverse=True)
+        group_bundle_count = len(group_items) // 3
+        total += group_bundle_count * group_offer_prices
+
 
         for sku, price in prices.items():
             count = counts.get(sku, 0)
@@ -80,3 +84,4 @@ class CheckoutSolution:
                 total += count * price
 
         return total
+
