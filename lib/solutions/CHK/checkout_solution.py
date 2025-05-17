@@ -32,7 +32,7 @@ class CheckoutSolution:
 
         # handle discounts for F -> 2F get one F free
         count_f = counts.get('F', 0)
-        free_fs = count_f // 2
+        free_fs = count_f // 3
         count_f_to_pay = count_f - free_fs
         total += count_f_to_pay * prices['F']
 
@@ -58,4 +58,5 @@ class CheckoutSolution:
         total += count_e * prices['E']
 
         return total
+
 
