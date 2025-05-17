@@ -41,14 +41,16 @@ class CheckoutSolution:
         counts['M'] = max(0, counts.get('M', 0) - free_ms)
 
         # handle discounts for R -> 3Rs get one Q free
-        free_rs = counts.get('R', 0) // 3
-        counts['Q'] = max(0, counts.get('Q', 0) - free_rs)
+        free_qs = counts.get('R', 0) // 3
+        counts['Q'] = max(0, counts.get('Q', 0) - free_qs)
 
         # handle discounts for F -> 2F get one F free
         count_f = counts.get('F', 0)
         free_fs = count_f // 3
         count_f_to_pay = count_f - free_fs
         total += count_f_to_pay * prices['F']
+
+        # handle discounts for
 
         # handle discounts for
 
@@ -74,10 +76,3 @@ class CheckoutSolution:
         total += count_e * prices['E']
 
         return total
-
-
-
-
-
-
-
