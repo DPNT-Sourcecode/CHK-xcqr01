@@ -63,16 +63,16 @@ class CheckoutSolution:
         # handle discounts for grouped items S, T, X, Y, Z
         grouped_items = []
         for sku in grouped_discount_skus:
-            group_items += [sku] * counts[sku]
+            grouped_items += [sku] * counts[sku]
 
-        group_items.sort(key=lambda sku: prices[sku], reverse=True)
-        group_bundle_count = len(group_items) // 3
+        grouped_items.sort(key=lambda sku: prices[sku], reverse=True)
+        group_bundle_count = len(grouped_items) // group_offer_count
         total += group_bundle_count * group_offer_price
 
-        # remove grouped items from count
+       # remove grouped items from count
 
        for i in range(group_bundle_count * 3):
-           counts[group_items[i]] -= 1
+           counts[grouped_items[i]] -= 1
 
         for sku, price in prices.items():
             count = counts.get(sku, 0)
@@ -88,5 +88,6 @@ class CheckoutSolution:
                 total += count * price
 
         return total
+
 
 
