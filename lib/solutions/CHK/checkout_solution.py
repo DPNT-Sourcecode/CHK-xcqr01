@@ -10,7 +10,13 @@ class CheckoutSolution:
         'C': 20,
         'D': 15,
         'E': 40,
-        'F': 10
+        'F': 10,
+        'G': 20,
+        'H': 10,
+        'J': 10,
+        'K': 20,
+        'L': 90,
+        'M': 15,
         }
 
         discounts = {
@@ -58,5 +64,6 @@ class CheckoutSolution:
         total += count_e * prices['E']
 
         return total
+
 
 
