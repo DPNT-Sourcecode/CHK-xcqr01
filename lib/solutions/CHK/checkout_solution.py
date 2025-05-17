@@ -50,29 +50,40 @@ class CheckoutSolution:
         count_f_to_pay = count_f - free_fs
         total += count_f_to_pay * prices['F']
 
-        # handle discounts for
+        # handle discounts for U -> 3U get one U free
+        count_u = counts.get('U', 0)
+        free_us = count_u // 3
+        count_u_to_pay = count_u - free_us
+        counts['U'] = count_u_to_pay
 
-        # handle discounts for
+        for sku, prices in prices.items():
+            count = counts.get(sku, 0)
+            if sku in discounts:
+                
 
-        count_a = counts.get('A', 0)
-        for offer_qty, offer_price in sorted(discounts['A'], key=lambda x: x[0], reverse=True):
-            total += (count_a // offer_qty) * offer_price
-            count_a %= offer_qty
-        total += count_a * prices['A']
 
-        count_b = counts.get('B', 0)
-        for offer_qty, offer_price in discounts['B']:
-            total += (count_b // offer_qty) * offer_price
-            count_b %= offer_qty
-        total += count_b * prices['B']
+#         count_a = counts.get('A', 0)
+#         for offer_qty, offer_price in sorted(discounts['A'], key=lambda x: x[0], reverse=True):
+#             total += (count_a // offer_qty) * offer_price
+#             count_a %= offer_qty
+#         total += count_a * prices['A']
+#
+#         count_b = counts.get('B', 0)
+#         for offer_qty, offer_price in discounts['B']:
+#             total += (count_b // offer_qty) * offer_price
+#             count_b %= offer_qty
+#         total += count_b * prices['B']
+#
+#         count_c = counts.get('C', 0)
+#         total += count_c * prices['C']
+#
+#         count_d = counts.get('D', 0)
+#         total += count_d * prices['D']
+#
+#         count_e = counts.get('E', 0)
+#         total += count_e * prices['E']
 
-        count_c = counts.get('C', 0)
-        total += count_c * prices['C']
 
-        count_d = counts.get('D', 0)
-        total += count_d * prices['D']
-
-        count_e = counts.get('E', 0)
-        total += count_e * prices['E']
 
         return total
+
