@@ -26,9 +26,8 @@ class CheckoutSolution:
 
         total = 0
 
-        for sku in skus:
-            if sku not in prices:
-                return -1
+        if not all(c in prices for c in skus):
+            return -1
 
         counts = Counter(skus)
 
@@ -49,6 +48,7 @@ class CheckoutSolution:
         free_fs = count_f // 3
         count_f_to_pay = count_f - free_fs
         total += count_f_to_pay * prices['F']
+        counts['F'] = 0
 
         # handle discounts for U -> 3U get one U free
         count_u = counts.get('U', 0)
@@ -70,6 +70,7 @@ class CheckoutSolution:
                 total += count * price
 
         return total
+
 
 
 
