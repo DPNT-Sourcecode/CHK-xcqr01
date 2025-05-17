@@ -24,10 +24,24 @@ class CheckoutSolution:
         total = 0
 
         count_a = counts.get('A', 0)
-        if count_a >= 3:
+        if count_a > 0:
             offer_qty, offer_price = discounts['A']
-            total += (count_a // offer_qty) * offer_price + ()
-#             total += (count_a, 130)
-#             count_a = count_a % 3
+            total += (count_a // offer_qty) * offer_price + (count_a % offer_qty) * prices['A']
+
+        count_b = counts.get('B', 0)
+        if count_b > 0:
+            offer_qty, offer_price = discounts['A']
+            total += (count_b // offer_qty) * offer_price + (count_b % offer_qty) * prices['B']
+
+        count_c = counts.get('C', 0)
+        if count_c > 0:
+            total += count_c * prices['C']
+
+        count_d = counts.get('D', 0)
+        if count_d > 0:
+            total += count_d * prices['D']
+
+        return total
+
 
 
