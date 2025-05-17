@@ -42,19 +42,23 @@ class CheckoutSolution:
         count_b = counts.get('B', 0)
         for offer_qty, offer_price in discounts['B']:
             total += (count_b // offer_qty) * offer_price
+            count_b %= offer_qty
+        total += count_b * prices['B']
 #         if count_b > 0:
 #             offer_qty, offer_price = discounts['B']
 #             total += (count_b // offer_qty) * offer_price + (count_b % offer_qty) * prices['B']
 
         count_c = counts.get('C', 0)
-        if count_c > 0:
-            total += count_c * prices['C']
+        total += count_c * prices['C']
 
         count_d = counts.get('D', 0)
-        if count_d > 0:
-            total += count_d * prices['D']
+        total += count_d * prices['D']
+
+        count_e = counts.get('E', 0)
+        total += count_e * prices['E']
 
         return total
+
 
 
 
