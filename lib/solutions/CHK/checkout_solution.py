@@ -1,3 +1,4 @@
+from collections import Counter
 
 class CheckoutSolution:
 
@@ -17,4 +18,16 @@ class CheckoutSolution:
         for sku in skus:
             if sku not in prices:
                 return -1
+
+        counts = Counter(skus)
+
+        total = 0
+
+        count_a = counts.get('A', 0)
+        if count_a >= 3:
+            offer_qty, offer_price = discounts['A']
+            total += (count_a // offer_qty) * offer_price + ()
+#             total += (count_a, 130)
+#             count_a = count_a % 3
+
 
