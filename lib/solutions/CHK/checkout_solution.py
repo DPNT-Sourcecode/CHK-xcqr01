@@ -69,25 +69,24 @@ class CheckoutSolution:
         group_bundle_count = len(grouped_items) // group_offer_count
         total += group_bundle_count * group_offer_price
 
-       # remove grouped items from count
-
-       for i in range(group_bundle_count * 3):
+        # remove grouped items from count
+        for i in range(group_bundle_count * 3):
            counts[grouped_items[i]] -= 1
 
         for sku, price in prices.items():
-            count = counts.get(sku, 0)
-
-            if sku in discounts:
+           count = counts.get(sku, 0)
+           if sku in discounts:
                 for offer_qty, offer_price in sorted(discounts[sku], key=lambda x : x[0], reverse=True):
                     if count >= offer_qty:
                         num_offers = count // offer_qty
                         total += num_offers * offer_price
                         count %= offer_qty
                 total += count * price
-            else:
-                total += count * price
+           else:
+               total += count * price
 
         return total
+
 
 
 
