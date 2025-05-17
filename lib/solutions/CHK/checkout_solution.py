@@ -13,7 +13,7 @@ class CheckoutSolution:
         }
 
         discounts = {
-        'A': [(3, 130), (5, 200)],
+        'A': [(5, 200), (3, 130)],
         'B': [(2, 45)],
         }
 
@@ -30,7 +30,7 @@ class CheckoutSolution:
         counts['B'] = max(0, counts.get('B', 0) - free_bs)
 
         count_a = counts.get('A', 0)
-        for offer_qty, offer_price in discounts['A']:
+        for offer_qty, offer_price in sorted(discounts['A'], key=lambda x: x[0]):
             total += (count_a // offer_qty) * offer_price
             count_a %= offer_qty
         total += count_a * prices['A']
@@ -51,6 +51,7 @@ class CheckoutSolution:
         total += count_e * prices['E']
 
         return total
+
 
 
 
