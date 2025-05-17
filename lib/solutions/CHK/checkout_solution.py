@@ -26,8 +26,9 @@ class CheckoutSolution:
 
         total = 0
 
-        if not all(c in prices for c in skus):
-            return -1
+        for sku in skus:
+            if sku not in prices:
+                return -1
 
         counts = Counter(skus)
 
@@ -69,6 +70,7 @@ class CheckoutSolution:
                 total += count * price
 
         return total
+
 
 
 
