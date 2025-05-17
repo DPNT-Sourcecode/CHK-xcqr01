@@ -58,8 +58,14 @@ class CheckoutSolution:
 
         for sku, prices in prices.items():
             count = counts.get(sku, 0)
+
             if sku in discounts:
-                
+                for offer_qty, offer_price in sorted(discounts[sku], key=lambda x : x[0], reverse=True):
+                    if count >= offer_qty:
+                        num_offers = count // offer_qty
+                        total += num_offers * offer_price
+                        count %= offer_qty
+                total += count * prices
 
 
 #         count_a = counts.get('A', 0)
@@ -86,4 +92,5 @@ class CheckoutSolution:
 
 
         return total
+
 
