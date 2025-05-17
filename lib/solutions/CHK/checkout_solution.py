@@ -36,11 +36,15 @@ class CheckoutSolution:
         free_bs = counts.get('E', 0) // 2
         counts['B'] = max(0, counts.get('B', 0) - free_bs)
 
+        # handle discounts for G
+
         # handle discounts for F -> 2F get one F free
         count_f = counts.get('F', 0)
         free_fs = count_f // 3
         count_f_to_pay = count_f - free_fs
         total += count_f_to_pay * prices['F']
+
+        # handle discounts for
 
         count_a = counts.get('A', 0)
         for offer_qty, offer_price in sorted(discounts['A'], key=lambda x: x[0], reverse=True):
@@ -64,6 +68,7 @@ class CheckoutSolution:
         total += count_e * prices['E']
 
         return total
+
 
 
 
