@@ -9,9 +9,9 @@ class CheckoutSolution:
         'E': 40, 'F': 10, 'G': 20, 'H': 10,
         'I': 35, 'J': 60, 'K': 70, 'L': 90,
         'M': 15, 'N': 40, 'O': 10, 'P': 50,
-        'Q': 30, 'R': 50, 'S': 30, 'T': 20,
+        'Q': 30, 'R': 50, 'S': 20, 'T': 20,
         'U': 40, 'V': 50, 'W': 20, 'X': 17,
-        'Y': 10, 'Z': 50
+        'Y': 20, 'Z': 21
         }
 
         discounts = {
@@ -23,6 +23,10 @@ class CheckoutSolution:
         'Q' : [(3, 80)],
         'V': [(3, 130), (2, 90)]
         }
+
+        grouped_discount_skus = ['S', 'T', 'X', 'Y', 'Z']
+        group_offer_prices = 45
+        group_offer_count = 3
 
         total = 0
 
@@ -56,6 +60,12 @@ class CheckoutSolution:
         count_u_to_pay = count_u - free_us
         counts['U'] = count_u_to_pay
 
+
+        # handle discounts for grouped items S, T, X, Y, Z
+        grouped_items = []
+        for sku in grouped_discount_skus:
+            count =
+
         for sku, price in prices.items():
             count = counts.get(sku, 0)
 
@@ -70,10 +80,3 @@ class CheckoutSolution:
                 total += count * price
 
         return total
-
-
-
-
-
-
-
