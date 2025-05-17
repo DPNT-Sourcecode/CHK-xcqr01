@@ -47,12 +47,11 @@ class CheckoutSolution:
         count_f = counts.get('F', 0)
         free_fs = count_f // 3
         count_f_to_pay = count_f - free_fs
-        total += count_f_to_pay * prices['F']
-        counts['F'] = 0
+        counts['F'] = count_f_to_pay
 
         # handle discounts for U -> 3U get one U free
         count_u = counts.get('U', 0)
-        free_us = count_u // 3
+        free_us = count_u // 4
         count_u_to_pay = count_u - free_us
         counts['U'] = count_u_to_pay
 
@@ -70,6 +69,7 @@ class CheckoutSolution:
                 total += count * price
 
         return total
+
 
 
 
